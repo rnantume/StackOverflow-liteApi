@@ -25,6 +25,18 @@ class AnswerList(Resource):
                             default=False, store_missing=True, location = ['form', 'json']
                             )
         super().__init__()
+
+    def get(self, questionId):
+        """
+        get all answers on a specific question by questionId
+        """
+        try:
+            answers = models.Answer.get_question_answers(questionId)
+        except TypeError:
+            abort(404, "message = question {} doesnot exist".format(questionId))
+        else:
+            return {'answers': [marshal(answer, answer_fields)
+                                for answer in answers]}, 200
     
     def post(self, questionId):
         """

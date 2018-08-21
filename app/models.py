@@ -61,6 +61,17 @@ class Answer():
         self.datetimeCreated = datetime.datetime.now()
         self.comments = []
 
+    @staticmethod
+    def get_question_answers(questionId):
+        """
+        method to get all answers about a question
+        :param questionId: for question whose answers to return
+        :return: answers(list) or question is none
+        """
+        for question in questions:
+            if question['questionId']== questionId:
+                return question['answers']
+
     def add_answer(self, questionId):
         """
         method to add a new answer to a question
