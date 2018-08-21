@@ -1,0 +1,87 @@
+@media (max-width: 640px) {
+    .header1{
+        display: block; 
+        height: 30px;
+        width: 50%;
+        padding: 20px 350px 20px 50px;
+    }  
+    .signin{
+        width: 200px;
+        height: 30px;
+    }
+    .signup{
+        width: 200px;
+        }
+    .div1{width: 0px; }
+    .main-content{
+        height: 700px;
+        background-image: url("../img/logo1.jpg");
+        background-size: 100%;   
+        display: block;
+        text-align: center;
+       }
+    .link_{
+        font-size: 14px;
+        margin-left: 200px;
+    }
+    .article-container{
+        padding-top: 20px;
+    }
+    .profile_pic{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+   
+    .main-nav{
+        margin-right: 400px;
+        margin-left: 5px;
+        width: 50px;
+        padding: 10px 5px;
+        }
+    .main-container{
+            height: 1200px;
+            margin-left: 5px;
+            display: block;
+        }
+    .question-container{
+            margin-left: 10px;
+            margin-right: 10px;
+            display: block;
+            padding: 1px;
+            height: 1000px;
+        }
+
+} 
+@media (max-width: 420px){
+    .header1{
+        display: block;  
+        width:330px;
+        text-align: center;
+        height: 150px;
+        padding-right: 100px;
+    }  
+    .signin{
+        width: 200px;
+        height: 30px;
+    }
+    .signup{
+        width: 100px;
+        }
+    .div1{width: 0px;}
+    .main-content{
+        height: 900px;
+        background-image: url("../img/logo1.jpg");
+        background-size: 100%;
+        background-repeat: no-repeat;   
+        display: block;
+        text-align: center;
+       }
+    .link_{
+        font-size: 14px;
+        margin-left: 200px;
+    }
+    .article-container{
+        padding-top: 20px;
+    }
+
+}
