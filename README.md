@@ -95,7 +95,7 @@ py.test <path-for-test-file>
 
 MIT LICENSED
 
-## Authur
+## Author
 
 [Robinah Nantume](http://github.com/rnantume)
 
