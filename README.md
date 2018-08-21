@@ -34,7 +34,7 @@ If you don't have **Python** installed go to the [Python Website](http://python.
 To install this app
 
 ```
-git clone git@github.com:rnamtume/StackOverflow-liteApi.git
+git clone repo here (https://github.com/rnantume/StackOverflow-liteApi.git)
 ```
 
 And install the required dependencies - specified in requirements.txt
