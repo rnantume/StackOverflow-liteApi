@@ -46,5 +46,18 @@ class QuestionsTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
         self.assertIn('Sample Description', str(result.data))
 
+    def test_api_can_post_an_answer_to_question(self):
+        """Test API can post answers to a question by using it's questionId."""
+        res = self.client.post('/questions',
+                data=json.dumps({"Topic":"Sample Topic", "Description":"Sample Description"}), 
+                                content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        result_in_json = json.loads(res.data.decode('utf-8').replace("'", "\""))
+        result = self.client.post('/questions/{}/answers'.format(result_in_json['questionId']),
+                                    data=json.dumps({'answer':"Sample Answer", 'accepted':True}),
+                                    content_type='application/json')
+        self.assertEqual(result.status_code, 201)
+        self.assertIn('Sample Answer', str(result.data))
+
 if __name__=='__main__':
     unittest.main()

@@ -11,10 +11,13 @@ def create_app(config_name):
     
 
     """
-    registering the questions_bp blueprint
+    registering the questions_bp and answers_bp blueprints
     """
     from .questions import questions_bp
     app.register_blueprint(questions_bp, url_prefix='/StackOverflow-lite/api/v1')
+
+    from .answers import answers_bp
+    app.register_blueprint(answers_bp, url_prefix='/StackOverflow-lite/api/v1')
 
 
     return app
