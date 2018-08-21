@@ -72,3 +72,7 @@ qn_api = Api(questions_bp)
 qn_api.add_resource(QuestionList,
     '/questions',
     endpoint='questions')
+
+qn_api.add_resource(Question,
+    '/questions/<string:questionId>',
+    endpoint='questions')
