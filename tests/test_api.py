@@ -59,5 +59,26 @@ class QuestionsTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 201)
         self.assertIn('Sample Answer', str(result.data))
 
+
+    def test_api_can_get_answers_to_question_by_id(self):
+        """Test API can get answers to a question by using it's questionId."""
+        res = self.client.post('/questions',
+                data=json.dumps({"Topic":"Sample Topic", "Description":"Sample Description"}), 
+                                content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        result_in_json = json.loads(res.data.decode('utf-8').replace("'", "\""))
+        result = self.client.post('/questions/{}/answers'.format(result_in_json['questionId']),
+                                    data=json.dumps({'answer':"Sample Answer", 'accepted':True}),
+                                    content_type='application/json')
+        self.assertEqual(result.status_code, 201)
+        self.assertIn('Sample Answer', str(result.data))
+        result = self.client.get(
+                '/questions/{}/answers'.format(result_in_json['questionId']))
+        self.assertEqual(result.status_code, 200)
+
+    def tearDown(self):
+        pass
+        
+
 if __name__=='__main__':
     unittest.main()
