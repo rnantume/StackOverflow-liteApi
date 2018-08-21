@@ -22,7 +22,18 @@ class Question():
         """
         if questions:
             return questions 
-            
+
+    @staticmethod
+    def get_question(questionId):
+        """
+        method to get a specific question by questionId
+        :param questionId: Question id
+        :return: question (dict) or none
+        """
+        for question in questions:
+            if question['questionId']== questionId:
+                return question
+
     def add_question(self):
         """
         method to add a new question

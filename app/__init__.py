@@ -9,9 +9,6 @@ def create_app(config_name):
     app.config.from_pyfile('config.py')
 
     
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
 
     """
     registering the questions_bp blueprint
