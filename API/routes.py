@@ -54,7 +54,18 @@ class QuestionList(Resource):
         new_question = models.Question(**args).add_question()
         """serializing the response with JSON"""
         return {'Your Question':[marshal(new_question, question_fields)]},201
-    
+
+class Question(Resource):
+    def get(self, questionId):
+        """
+        get a specific question
+        """
+        question = models.Question.get_question(questionId)
+        if question:
+            return {'Your question': [marshal(question,question_fields)]}, 200
+        else:
+            abort(404, "question {} doesnot exist".format(questionId))
+
 questions_bp = Blueprint('routes', __name__)
 qn_api = Api(questions_bp)
 
@@ -62,3 +73,6 @@ qn_api.add_resource(QuestionList,
     '/questions',
     endpoint='questions'
 
+qn_api.add_resource(Question,
+    '/questions/<int:questionId>',
+    endpoint='question')
