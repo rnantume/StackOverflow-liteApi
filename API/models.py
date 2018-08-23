@@ -37,4 +37,15 @@ class Question():
         }
         questions.append(new_question)
         return new_question
+
+    @staticmethod
+    def get_question(questionId):
+        """
+        method to get a specific question by questionId
+        :param questionId: Question id
+        :return: question (dict) or none
+        """
+        for question in questions:
+            if question['questionId']== questionId:
+                return question
     
