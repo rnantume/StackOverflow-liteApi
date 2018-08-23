@@ -3,7 +3,6 @@ import os
 class Config(object):
     """general configuration class."""
     DEBUG = False
-    CSRF_ENABLED = True
     SECRET = os.getenv('SECRET')
 
 class DevelopmentConfig(Config):
