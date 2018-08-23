@@ -108,7 +108,7 @@ class AnswerList(Resource):
 
 
 class Default(Resource):
-    def home(self):
+    def get(self):
         return 'This is my api'
 
 questions_bp = Blueprint('routes', __name__)
