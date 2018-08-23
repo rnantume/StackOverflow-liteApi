@@ -66,6 +66,21 @@ class Question(Resource):
         else:
             abort(404, "question {} doesnot exist".format(questionId))
 
+class AnswerList(Resource):
+    
+
+    def get(self, questionId):
+        """
+        get all answers on a specific question by questionId
+        """
+        try:
+            answers = models.Answer.get_question_answers(questionId)
+        except TypeError:
+            abort(404, "message = question {} doesnot exist".format(questionId))
+        else:
+            return {'answers': [marshal(answer, answer_fields)
+                                for answer in answers]}, 200
+
 questions_bp = Blueprint('routes', __name__)
 qn_api = Api(questions_bp)
 
@@ -76,3 +91,7 @@ qn_api.add_resource(QuestionList,
 qn_api.add_resource(Question,
     '/questions/<int:questionId>',
     endpoint='question')
+
+qn_api.add_resource(AnswerList,
+    '/questions/<int:questionId>/answers',
+    endpoint='answers')
