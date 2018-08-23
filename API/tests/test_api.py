@@ -17,6 +17,7 @@ class QuestionsTestCase(unittest.TestCase):
         self.question = {'Topic':'Sample Topic', 'Description':"Sample Description"}
         self.answer = {'answer':"Sample Answer"}
         self.partial_qn = {'Topic':'Sample Topic'}
+        self.partial_ans ={'answer': ''}
 
     def test_api_gets_all_questions(self):
         """Test API can get all questions (GET request)."""
@@ -63,12 +64,30 @@ class QuestionsTestCase(unittest.TestCase):
         res = self.client.post('/StackOverflow-lite/api/v1/questions',
                          data=json.dumps(self.partial_qn),content_type='application/json')
         self.assertEqual(res.status_code, 400)
+
+
+    def test_api_can_post_an_answer_to_question(self):
+        """Test API can post answers to a question by using it's questionId."""
+        res = self.client.post('/StackOverflow-lite/api/v1/questions',
+                         data=json.dumps(self.question),content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        result = self.client().post('/StackOverflow-lite/api/v1/questions/{}/answers'.format(0),
+                                    data=self.answer, content_type='application/json')
+        self.assertEqual(result.status_code, 201)
+        self.assertIn('Sample Answer', str(result.data))
+
+    def test_api_cannot_post_answer_if_answer_missing(self):
+        res = self.client.post('/StackOverflow-lite/api/v1/questions/{}/answers'.format(0),
+                         data=json.dumps(self.partial_ans),content_type='application/json')
+        self.assertEqual(res.status_code, 400)
   
+
     def tearDown(self):
         """teardown initialised variables"""
         self.question = {}
         self.answer = {}
         self.partial_qn = {}
+        self.partial_ans = {}
 
 if __name__ =='__main__':
     unittest.main()
