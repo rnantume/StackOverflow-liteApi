@@ -55,6 +55,13 @@ class Answer():
     class to represent answer model
     """
 
+    def __init__(self, answer, accepted):
+        self.answerId = uuid.uuid4().hex
+        self.answer = answer
+        self.accepted = accepted
+        self.datetimeCreated = datetime.datetime.now()
+        self.comments = []
+
     @staticmethod
     def get_question_answers(questionId):
         """
@@ -65,4 +72,22 @@ class Answer():
         for question in questions:
             if question['questionId']== questionId:
                 return question['answers']
+
+    def add_answer(self, questionId):
+        """
+        method to add a new answer to a question
+        :param questionId: of question to add answers
+        :return: answer created(dict) or question is none
+        """
+        for question in questions:
+            if question['questionId']== questionId:
+                new_answer = {
+                    'answerId': self.answerId,
+                    'answer': self.answer,
+                    'accepted': self.accepted,
+                    'datetimeCreated': self.datetimeCreated,
+                    'comments': self.comments
+                }
+                question['answers'].append(new_answer)
+                return new_answer
     
