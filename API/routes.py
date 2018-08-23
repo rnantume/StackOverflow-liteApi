@@ -21,7 +21,19 @@ class QuestionList(Resource):
     """
     Shows a list of all questions, and lets one POST to add new question
     """
-    
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('Topic', type=str, required=True, 
+                            nullable=False, help="Topic cannot be null or none",
+                            location = ['form', 'json']
+                            )
+        self.reqparse.add_argument('Description', type=str, required=True, 
+                            nullable=False, help="Description cannot be null or none",
+                            location = ['form', 'json']
+                            )
+        super().__init__()
+        
     def get(self):
         """
         get all questions
@@ -34,6 +46,14 @@ class QuestionList(Resource):
         else:
             return {'Message': 'No Questions Found'},200
 
+    def post(self):
+        """
+        create a new question
+        """
+        args = self.reqparse.parse_args()
+        new_question = models.Question(**args).add_question()
+        """serializing the response with JSON"""
+        return {'Your Question':[marshal(new_question, question_fields)]},201
     
 questions_bp = Blueprint('routes', __name__)
 qn_api = Api(questions_bp)

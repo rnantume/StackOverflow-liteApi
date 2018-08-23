@@ -22,6 +22,23 @@ class QuestionsTestCase(unittest.TestCase):
         """Test API can get all questions (GET request)."""
         res = self.client.get('/StackOverflow-lite/api/v1/questions')
         self.assertEqual(res.status_code, 200)
+
+    def test_add_question(self):
+        """Test API can add new question"""
+        res = self.client.post('/StackOverflow-lite/api/v1/questions',
+                         data=json.dumps(self.question),content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        self.assertIn('Sample Description', str(res.data))
+
+    def test_api_can_post_and_get_all_questions(self):
+        """Test API can get all questions (GET request and POST request)."""
+        res = self.client.post('/StackOverflow-lite/api/v1/questions', 
+                    data=json.dumps(self.question),
+                                 content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        res = self.client.get('/StackOverflow-lite/api/v1/questions')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('Description', str(res.data))
   
     def tearDown(self):
         """teardown initialised variables"""
