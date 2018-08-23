@@ -9,6 +9,6 @@ from routes import questions_bp
 """
 registering the questions_bp and answers_bp blueprints
 """
-app.register_blueprint(questions_bp, url_prefix='/StackOverflow-lite/api/v1')
+app.register_blueprint(questions_bp)
 
 

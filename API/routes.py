@@ -106,17 +106,24 @@ class AnswerList(Resource):
             """
             return {'Your answer': [marshal(new_answer, answer_fields)]},201
 
+
+class Default(Resource):
+    def home(self):
+        return 'This is my api'
+
 questions_bp = Blueprint('routes', __name__)
 qn_api = Api(questions_bp)
 
 qn_api.add_resource(QuestionList,
-    '/questions',
+    '/StackOverflow-lite/api/v1/questions',
     endpoint='questions')
 
 qn_api.add_resource(Question,
-    '/questions/<int:questionId>',
+    '/StackOverflow-lite/api/v1/questions/<int:questionId>',
     endpoint='question')
 
 qn_api.add_resource(AnswerList,
-    '/questions/<int:questionId>/answers',
+    '/StackOverflow-lite/api/v1/questions/<int:questionId>/answers',
     endpoint='answers')
+
+qn_api.add_resource(Default, '/')
