@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/rnantume/StackOverflow-liteApi.svg?branch=develop)](https://travis-ci.org/rnantume/StackOverflow-liteApi)
+[![Coverage Status](https://coveralls.io/repos/github/rnantume/StackOverflow-liteApi/badge.svg?branch=develop)](https://coveralls.io/github/rnantume/StackOverflow-liteApi?branch=develop)
 
 # StackOverflow-lite
 StackOverflow-lite is a platform where people can ask questions and provide answers.
