@@ -22,5 +22,19 @@ class Question():
         """
         if questions:
             return questions 
-     
+
+    def add_question(self):
+        """
+        method to add a new question
+        :return: question created(dict)
+        """
+        new_question = {
+            'questionId': self.questionId,
+            'Topic': self.Topic,
+            'Description': self.Description,
+            'datetimeCreated': self.datetimeCreated,
+            'answers': self.answers
+        }
+        questions.append(new_question)
+        return new_question
     
