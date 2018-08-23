@@ -45,6 +45,14 @@ pip install <app-dependencies>
 
 Running server
 
+Setup  the environment variable
+Run that command
+
+```
+export FLASK_APP=API/app.py
+```
+then run this
+
 ```
 flask run 
 ```
@@ -56,7 +64,7 @@ Server runs on port ``5000``
 To run test cases
 
 ```
-py.test <path-for-test-file>
+py.test <path-to-test-file>
 ```
 
 ### Working Routes
