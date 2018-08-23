@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rnantume/StackOverflow-liteApi.svg?branch=develop)](https://travis-ci.org/rnantume/StackOverflow-liteApi)
+
 # StackOverflow-lite
 StackOverflow-lite is a platform where people can ask questions and provide answers.
 
