@@ -8,7 +8,7 @@ install:
 
 # command to run tests
 script:
-   - py.test --with-coverage --cover-tests
+   - nosetests --with-coverage --cover-tests
    - coverage report
 
 
