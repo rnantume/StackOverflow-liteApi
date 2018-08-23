@@ -40,7 +40,7 @@ git clone repo here (https://github.com/rnantume/StackOverflow-liteApi.git)
 And install the required dependencies - specified in requirements.txt
 
 ```
-pip install <app-dependencies>
+pip install -r requirements.txt
 ```
 
 Running server
