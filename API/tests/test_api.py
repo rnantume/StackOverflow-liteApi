@@ -39,6 +39,16 @@ class QuestionsTestCase(unittest.TestCase):
         res = self.client.get('/StackOverflow-lite/api/v1/questions')
         self.assertEqual(res.status_code, 200)
         self.assertIn('Description', str(res.data))
+
+    def test_api_can_get_question_by_id(self):
+        """Test API can get a question by using it's questionId."""
+        res = self.client.post('/StackOverflow-lite/api/v1/questions',
+                         data=json.dumps(self.question),content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        result = self.client.get(
+                '/StackOverflow-lite/api/v1/questions/{}'.format(0))
+        self.assertEqual(result.status_code, 200)
+        self.assertIn('Sample Description', str(res.data))
   
     def tearDown(self):
         """teardown initialised variables"""
