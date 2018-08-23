@@ -58,6 +58,11 @@ class QuestionsTestCase(unittest.TestCase):
         result = self.client.get(
                 '/StackOverflow-lite/api/v1/questions/{}/answers'.format(0))
         self.assertEqual(result.status_code, 200)
+
+    def test_api_cannot_post_question_if_Description_missing(self):
+        res = self.client.post('/StackOverflow-lite/api/v1/questions',
+                         data=json.dumps(self.partial_qn),content_type='application/json')
+        self.assertEqual(res.status_code, 400)
   
     def tearDown(self):
         """teardown initialised variables"""
