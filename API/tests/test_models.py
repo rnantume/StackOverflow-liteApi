@@ -40,11 +40,6 @@ class ModelsTestCase(unittest.TestCase):
         res = self.answer.add_answer(0)
         self.assertEqual(dict, type(res))
 
-    def test_cannot_post_answer_if_questionId_unknown(self):
-        res = self.question.add_question()
-        self.assertEqual(dict, type(res))
-        res = self.answer.add_answer(4)
-        self.assertEqual(None, res)
 
 if __name__ == '__main__':
     unittest.main()
