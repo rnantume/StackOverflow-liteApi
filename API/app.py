@@ -5,7 +5,7 @@ app = Flask(__name__,instance_relative_config=True)
 
 app.config['DEBUG'] = True
 
-from routes import questions_bp
+from .routes import questions_bp
 """
 registering the questions_bp and answers_bp blueprints
 """

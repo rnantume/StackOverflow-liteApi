@@ -3,7 +3,7 @@ import datetime
 
 questions = []
 
-class Question():
+class Question:
     """ 
     class to represent question model
     """

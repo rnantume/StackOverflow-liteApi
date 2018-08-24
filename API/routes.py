@@ -5,7 +5,7 @@ from flask import request, jsonify, Blueprint, abort
 from flask_restful import (reqparse, Resource, fields, inputs, Api,
                             marshal)
 
-import models
+from .models import Question, Answer
 
 
 question_fields = {
@@ -38,7 +38,7 @@ class QuestionList(Resource):
         """
         get all questions
         """
-        questions = models.Question.get_questions()
+        questions = Question.get_questions()
         if questions:
             """serializing the response with JSON"""
             return {'Questions': [marshal(question,question_fields)
@@ -51,16 +51,16 @@ class QuestionList(Resource):
         create a new question
         """
         args = self.reqparse.parse_args()
-        new_question = models.Question(**args).add_question()
+        new_question = Question(**args).add_question()
         """serializing the response with JSON"""
         return {'Your Question':[marshal(new_question, question_fields)]},201
 
-class Question(Resource):
+class Question_(Resource):
     def get(self, questionId):
         """
         get a specific question
         """
-        question = models.Question.get_question(questionId)
+        question = Question.get_question(questionId)
         if question:
             return {'Your question': [marshal(question,question_fields)]}, 200
         else:
@@ -91,7 +91,7 @@ class AnswerList(Resource):
         get all answers on a specific question by questionId
         """
         try:
-            answers = models.Answer.get_question_answers(questionId)
+            answers = Answer.get_question_answers(questionId)
         except TypeError:
             abort(404, "message = question {} doesnot exist".format(questionId))
         else:
@@ -103,12 +103,12 @@ class AnswerList(Resource):
         adding an answer to a specific question by questionId
         """
         try:
-            answers = models.Answer.get_question_answers(questionId)
+            answers = Answer.get_question_answers(questionId)
         except TypeError:
             abort(404, "message = question {} doesnot exist".format(questionId))
         else:
             args = self.reqparse.parse_args()
-            new_answer = models.Answer(**args).add_answer(questionId)
+            new_answer = Answer(**args).add_answer(questionId)
             """
             serializing the response with JSON
             """
@@ -121,7 +121,7 @@ qn_api.add_resource(QuestionList,
     '/StackOverflow-lite/api/v1/questions',
     endpoint='questions')
 
-qn_api.add_resource(Question,
+qn_api.add_resource(Question_,
     '/StackOverflow-lite/api/v1/questions/<int:questionId>',
     endpoint='question')
 

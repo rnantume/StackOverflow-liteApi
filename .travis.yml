@@ -7,14 +7,9 @@ install:
   - "pip install -r requirements.txt"
 
 
-# command to run tests
-script:
-   - nosetests --with-coverage --cover-tests
-   - coverage report
-
-# Another method to run tests
+# command method to run tests
 script: 
-  - pytest
+  - pytest tests -v --cov=API  --cov-report term-missing
 
 after_success:
 - coveralls

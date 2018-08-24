@@ -1,5 +1,5 @@
 import unittest
-from models import Question, Answer
+from API.models import Question, Answer
 
 
 class ModelsTestCase(unittest.TestCase):

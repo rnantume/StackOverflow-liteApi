@@ -1,7 +1,7 @@
 import unittest
 import json
 
-from app import app
+from API.app import app
 # from instance.config import app_config
 
 class QuestionsTestCase(unittest.TestCase):
@@ -31,15 +31,7 @@ class QuestionsTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertIn('Sample Description', str(res.data))
 
-    # def test_api_can_post_and_get_all_questions(self):
-    #     """Test API can get all questions (GET request and POST request)."""
-    #     res = self.client.post('/StackOverflow-lite/api/v1/questions', 
-    #                 data=json.dumps(self.question),
-    #                              content_type='application/json')
-    #     self.assertEqual(res.status_code, 201)
-    #     result = self.client.get('/StackOverflow-lite/api/v1/questions')
-    #     self.assertEqual(result.status_code, 200)
-    #     self.assertIn('Description', str(result.data))
+
 
     def test_api_can_get_question_by_id(self):
         """Test API can get a question by using it's questionId."""
