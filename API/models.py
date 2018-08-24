@@ -18,7 +18,7 @@ class Question():
     @staticmethod
     def get_questions():
         """
-        :return: all questions in memory
+        :return: list all questions in memory
         """
         if questions:
             return questions 
