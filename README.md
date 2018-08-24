@@ -40,6 +40,20 @@ To install this app
 ```
 git clone repo here (https://github.com/rnantume/StackOverflow-liteApi.git)
 ```
+change directory to StackOverflow-liteApi
+```
+cd StackOverflow-liteApi
+```
+Create a virtual environment from commandline
+```
+python -m venv venv
+```
+The last 'venv' can be changed to prefered name but conventionally venv is better
+
+Then activate the created virtual environment from commandline(for windows)
+```
+source venv/scripts/activate
+```
 
 And install the required dependencies - specified in requirements.txt
 
