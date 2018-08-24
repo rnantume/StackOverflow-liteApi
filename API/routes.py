@@ -66,6 +66,14 @@ class Question(Resource):
         else:
             abort(404, "question {} doesnot exist".format(questionId))
 
+answer_fields = {
+    'answerId': fields.String,
+    'answer': fields.String,
+    'accepted': fields.Boolean,
+    'datetimeCreated': fields.DateTime,
+    'comments': fields.List(cls_or_instance=fields.Raw)
+}
+
 class AnswerList(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
@@ -106,11 +114,6 @@ class AnswerList(Resource):
             """
             return {'Your answer': [marshal(new_answer, answer_fields)]},201
 
-
-class Default(Resource):
-    def get(self):
-        return 'This is my api'
-
 questions_bp = Blueprint('routes', __name__)
 qn_api = Api(questions_bp)
 
@@ -125,5 +128,3 @@ qn_api.add_resource(Question,
 qn_api.add_resource(AnswerList,
     '/StackOverflow-lite/api/v1/questions/<int:questionId>/answers',
     endpoint='answers')
-
-qn_api.add_resource(Default, '/')

@@ -1,6 +1,7 @@
 language: python
 python:
   - "3.6"
+
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
@@ -11,7 +12,9 @@ script:
    - nosetests --with-coverage --cover-tests
    - coverage report
 
+# Another method to run tests
+script: 
+  - pytest
 
 after_success:
 - coveralls
-# - coveralls
