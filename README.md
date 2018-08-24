@@ -82,7 +82,7 @@ Server runs on port ``5000``
 To run test cases
 
 ```
-py.test <path-to-test-file>
+pytest tests -v --cov=API  --cov-report term-missing
 ```
 
 ### Working Routes
